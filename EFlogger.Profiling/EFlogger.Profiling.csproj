@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{386222BD-6B6E-480F-A342-8DE1AB516E2C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EFlogger.Profiling</RootNamespace>
+    <AssemblyName>EFlogger.Profiling</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ASP_NET_MVC3</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.Decompiler, Version=2.1.0.1603, Culture=neutral, PublicKeyToken=d4bfe873e7598c49, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\ICSharp\ICSharpCode.Decompiler.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Cecil, Version=0.9.5.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\External\ICSharp\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomTiming.cs" />
+    <Compile Include="Data\ProfiledDbDataAdapter.cs" />
+    <Compile Include="Decompiler.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="MiniProfiler.cs" />
+    <Compile Include="Nlogger.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SqlTiming.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SqlTimingParameter.cs" />
+    <Compile Include="Data\ExecuteType.cs" />
+    <Compile Include="Data\IDbProfiler.cs" />
+    <Compile Include="Data\ProfiledDbProviderFactory.cs" />
+    <Compile Include="Data\Link.cs" />
+    <Compile Include="Data\ProfiledDbCommand.cs" />
+    <Compile Include="Data\ProfiledDbConnection.cs" />
+    <Compile Include="Data\ProfiledDbDataReader.cs" />
+    <Compile Include="Data\ProfiledDbTransaction.cs" />
+    <Compile Include="Helpers\IStopwatch.cs" />
+    <Compile Include="Helpers\SqlBuilder.cs" />
+    <Compile Include="Helpers\SqlMapper.cs" />
+    <Compile Include="Helpers\StackTraceSnippet.cs" />
+    <Compile Include="SqlFormatters\InlineFormatter.cs" />
+    <Compile Include="SqlFormatters\ISqlFormatter.cs" />
+    <Compile Include="SqlFormatters\SqlServerFormatter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlProfiler.cs" />
+    <Compile Include="Timing.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EFlogger.Network\EFlogger.Network.csproj">
+      <Project>{EEAF110C-A5AC-43A2-8C0A-E0D61A33E827}</Project>
+      <Name>EFlogger.Network</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
